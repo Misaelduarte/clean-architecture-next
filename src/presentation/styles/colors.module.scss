@@ -1,0 +1,9 @@
+/* stylelint-disable selector-pseudo-class-no-unknown */
+/* stylelint-disable property-no-unknown */
+$white: #fff;
+$black: #000;
+
+:export {
+  white: $white;
+  black: $black;
+}

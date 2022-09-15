@@ -1,0 +1,56 @@
+{
+    "Component without props": {
+        "prefix": "component",
+        "body": [
+            "import styles from './styles.module.scss';",
+            "",
+            "export const ${TM_DIRECTORY/(^.+\\/(.*)$)/${2:/pascalcase}/}: React.FC = () => {",
+            "",
+            "  return (",
+            "    <div className={styles.container}>",
+            "      ",
+            "    </div>",
+            "  );",
+            "};",
+            "",
+        ],
+        "description": "Create the structure of a react component without props"
+    },
+    "Component with props": {
+        "prefix": "componentprops",
+        "body": [
+            "import styles from './styles.module.scss';",
+            "",
+            "type ${TM_DIRECTORY/(^.+\\/(.*)$)/${2:/pascalcase}/}Props = {",
+            "};",
+            "",
+            "export const ${TM_DIRECTORY/(^.+\\/(.*)$)/${2:/pascalcase}/}: React.FC<${TM_DIRECTORY/(^.+\\/(.*)$)/${2:/pascalcase}/}Props> = ({ ${1:props} }) => {",
+            "",
+            "  return (",
+            "    <div className={styles.container}>",
+            "      ",
+            "    </div>",
+            "  );",
+            "};",
+            "",
+        ],
+        "description": "Create the structure of a react component with props"
+    },
+    "Style file structure": {
+        "prefix": "styles",
+        "body": [
+            "@import '@/presentation/styles/variables.scss';",
+            "",
+            ".container {",
+            "  ${1:styles}",
+            "}",
+            "",
+        ],
+        "description": "Create the structure of a styling file"
+    },
+    "Icon":{
+        "prefix": "icon",
+        "body": "import { ReactComponent as ${1:icon} } from '@/presentation/assets/svgs/${2:icon}';",
+        "description": "Create the icon import structure"
+    }
+}
