@@ -9,7 +9,8 @@
     "*.{ts,tsx}": [
       "yarn check-types",
       "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "yarn test --findRelatedTests"
     ],
     "*.scss": [
       "stylelint --fix",
