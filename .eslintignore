@@ -1,0 +1,12 @@
+node_modules
+.vscode
+coverage
+public
+next.config.js
+__mocks__
+*.scss
+*.css
+*.svg
+*.jpg
+*.png
+*.md

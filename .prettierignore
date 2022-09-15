@@ -1,0 +1,8 @@
+node_modules
+.vscode
+coverage
+public
+webpack.config.js
+next.config.js
+commitlint.config.cjs
+__mocks__
