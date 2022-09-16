@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
 import { UserRoles } from '@/domain/models/user-model';
+import { AppProvider } from '@/presentation/contexts/app-context';
 
 import '@/presentation/styles/globals.scss';
 
@@ -28,7 +29,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, [checkIsUserAllowed, router]);
 
-  return checkIsUserAllowed() ? <Component {...pageProps} /> : null;
+  return !checkIsUserAllowed() ? null : (
+    <AppProvider>
+      <Component {...pageProps} />
+    </AppProvider>
+  );
 }
 
 export default MyApp;

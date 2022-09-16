@@ -1,0 +1,20 @@
+@import '@/presentation/styles/variables.scss';
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: rgba($black, 0.7);
+  overflow: auto;
+
+  &.clickable {
+    cursor: pointer;
+  }
+
+  & > * {
+    cursor: default;
+  }
+}

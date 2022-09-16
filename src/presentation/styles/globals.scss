@@ -1,7 +1,13 @@
 @import './reset.scss';
 
 html {
-  font-size: 62.5%;
+  font-size: 10px;
 
-  // 1rem = 0.625 * 16px = 10px;
+  // 1rem = 10px;
+  font-family: sans-serif;
+}
+
+body.no-scroll {
+  overflow: hidden !important;
+  height: 100vh;
 }

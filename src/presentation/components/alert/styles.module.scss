@@ -1,0 +1,104 @@
+@import '@/presentation/styles/variables.scss';
+
+.container {
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  width: calc(100vw - 4.8rem);
+  max-width: none;
+  font-size: 1.4rem;
+  position: fixed;
+  left: 2.4rem;
+  right: 2.4rem;
+  bottom: 7rem;
+  z-index: 120;
+  box-shadow: 4px 4px 10px 0 rgba($black, 0.2);
+  animation: alert-appear 0.7s ease-out forwards;
+
+  @include lg {
+    max-width: 75rem;
+    width: 55%;
+    bottom: 5.2rem;
+    left: 5.2rem;
+    right: unset;
+  }
+
+  &.close {
+    animation: alert-hide 0.4s ease-in forwards;
+  }
+
+  &.success {
+    background-color: $white;
+    color: $black;
+  }
+
+  &.error {
+    background-color: $white;
+    color: $black;
+  }
+}
+
+.icon-container {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: currentcolor;
+  margin-right: 1.6rem;
+
+  .icon {
+    fill: $white;
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+}
+
+.text {
+  font-size: 1.4rem;
+  color: currentcolor;
+  flex: 1;
+  text-align: start;
+}
+
+.close-toast-container {
+  font-size: 0;
+  margin-left: auto;
+  transform: translate(16px, -13px);
+
+  .close-toast {
+    width: 2rem;
+    height: 2rem;
+    fill: $black;
+    transition: fill 0.2s;
+
+    &:hover {
+      fill: $black;
+    }
+  }
+}
+
+@keyframes alert-appear {
+  from {
+    opacity: 0;
+    transform: translateY(5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes alert-hide {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(7rem);
+  }
+}

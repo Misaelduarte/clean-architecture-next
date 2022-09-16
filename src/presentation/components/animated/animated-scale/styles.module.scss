@@ -1,0 +1,52 @@
+.animate-in {
+  opacity: 0;
+  animation-name: scale-in;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.animate-out {
+  opacity: 1;
+  animation-name: scale-out;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.disable-animation {
+  animation-name: none;
+  max-height: none;
+  opacity: 1;
+}
+
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+    max-height: 100vh;
+  }
+
+  80% {
+    transform: scale(1.2);
+    max-height: 100vh;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    max-height: 100vh;
+  }
+}
+
+@keyframes scale-out {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    max-height: 100vh;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+    max-height: 100vh;
+  }
+}
