@@ -1,3 +1,4 @@
+import { useCallback, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
@@ -9,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const userRole = UserRoles.ADMIN;
 
-  function checkIsUserAllowed(): boolean {
+  const checkIsUserAllowed = useCallback((): boolean => {
     if (router.pathname.startsWith('/admin') && userRole !== UserRoles.ADMIN) {
       return false;
     }
@@ -19,15 +20,15 @@ function MyApp({ Component, pageProps }: AppProps) {
     // }
 
     return true;
-  }
+  }, [router.pathname, userRole]);
 
-  if (!checkIsUserAllowed()) {
-    router.push('/login');
-  }
+  useEffect(() => {
+    if (!checkIsUserAllowed()) {
+      router.push('/login');
+    }
+  }, [checkIsUserAllowed, router]);
 
-  const ComponentToRender = Component;
-
-  return <ComponentToRender {...pageProps} />;
+  return checkIsUserAllowed() ? <Component {...pageProps} /> : null;
 }
 
 export default MyApp;
