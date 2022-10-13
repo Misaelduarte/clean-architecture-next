@@ -1,3 +1,6 @@
-.title {
-  font-weight: bold;
+@import '@/presentation/styles/variables.scss';
+
+.container {
+  width: min(90%, 30rem);
+  margin: 2rem auto;
 }

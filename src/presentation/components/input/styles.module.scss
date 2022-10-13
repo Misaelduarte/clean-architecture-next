@@ -1,0 +1,59 @@
+@import '@/presentation/styles/variables.scss';
+
+@mixin move-label-to-top {
+  top: 0;
+  padding: 0 0.2rem;
+  font-size: 1rem;
+  transform: translate(-0.5rem, -50%);
+}
+
+.container {
+  position: relative;
+
+  .label {
+    font-size: 1.4rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1.4rem;
+    pointer-events: none;
+    transition: all 0.2s ease-out;
+    background-color: $white;
+    color: $black;
+
+    &.has-text {
+      @include move-label-to-top;
+    }
+  }
+
+  .input {
+    outline: none;
+    border: 2px solid $black;
+    border-radius: 8px;
+    min-height: 4rem;
+    padding: 1rem 1.2rem;
+    width: 100%;
+    font-size: 1.6rem;
+
+    &.error {
+      border: 2px solid $black;
+    }
+
+    &:focus,
+    &:-webkit-autofill {
+      border: 2px solid $black;
+
+      & + .label {
+        @include move-label-to-top;
+      }
+    }
+  }
+}
+
+.error-container {
+  align-self: flex-start;
+  height: 2.4rem;
+  padding-top: 0.4rem;
+  font-size: 1.2rem;
+  color: $black;
+}
