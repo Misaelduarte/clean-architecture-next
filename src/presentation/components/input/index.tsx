@@ -103,6 +103,7 @@ const InputComponent = (
           onFocus={handleFocus}
           placeholder={placeholder}
           ref={ref}
+          id={id}
           onPaste={disablePaste ? e => e.preventDefault() : undefined}
         />
         <label
