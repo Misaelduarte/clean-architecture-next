@@ -7,7 +7,7 @@ const Login: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Login | FFAs</title>
+        <title>Login | FFA</title>
       </Head>
 
       {makeLogin()}
