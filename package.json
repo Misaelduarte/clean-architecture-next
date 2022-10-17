@@ -5,6 +5,17 @@
   "engines": {
     "node": ">=16.13.0"
   },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "yarn test --findRelatedTests"
+    ],
+    "*.scss": [
+      "stylelint --fix",
+      "prettier --write"
+    ]
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
