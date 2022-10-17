@@ -1,5 +1,3 @@
-// @ts-nocheck
-require('jest-fetch-mock').enableMocks();
 // Cookie mock
 require('./setup-cookies');
 
