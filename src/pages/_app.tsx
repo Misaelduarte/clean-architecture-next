@@ -6,6 +6,7 @@ import { UserRoles } from '@/domain/models/user-model';
 import { AppProvider } from '@/presentation/contexts/app-context';
 
 import '@/presentation/styles/globals.scss';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -31,6 +32,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return !checkIsUserAllowed() ? null : (
     <AppProvider>
+       <Head>
+        <title>FFA</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+      </Head>
       <Component {...pageProps} />
     </AppProvider>
   );
