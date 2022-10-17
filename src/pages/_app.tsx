@@ -1,12 +1,12 @@
 import { useCallback, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 import { UserRoles } from '@/domain/models/user-model';
 import { AppProvider } from '@/presentation/contexts/app-context';
 
 import '@/presentation/styles/globals.scss';
-import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
