@@ -41,6 +41,6 @@ Object.defineProperty(HTMLMediaElement.prototype, 'muted', {
 jest.mock('focus-trap-react');
 
 // react-optimized-images mock
-jest.mock('react-optimized-images', () => ({
-  Picture: () => null,
-}));
+// jest.mock('react-optimized-images', () => ({
+//   Picture: () => null,
+// }));

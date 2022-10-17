@@ -1,0 +1,39 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+
+  pre_build:
+    commands:
+      - yarn install --ignore-engines
+      - curl -sL https://sentry.io/get-cli/ | bash
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - apt-get update && apt-get install -y python-dev
+      - curl -O https://bootstrap.pypa.io/get-pip.py
+      - python get-pip.py
+      - pip install awscli --upgrade
+      - eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email | sed 's|https://||')
+
+  build:
+    commands:
+      - yarn stylelint
+      - yarn eslint
+      - yarn test
+      - export VERSION=$(date +%Y-%m-%dT%H:%M:%S)
+      - |
+        NEXT_PUBLIC_APP_API_URL=$NEXT_PUBLIC_APP_API_URL \
+        NEXT_PUBLIC_APP_ROOT_DOMAIN=$NEXT_PUBLIC_APP_ROOT_DOMAIN \
+        NEXT_PUBLIC_ENVIRONMENT=$NEXT_PUBLIC_ENVIRONMENT \
+        NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL \
+        yarn next build
+      - yarn generate-build-version
+      - yarn next-sitemap
+      - yarn next export
+      - aws s3 sync out/ s3://$NEXT_S3_BUCKET --delete
+      - aws cloudfront create-invalidation --paths '/*' --distribution-id $AWS_DISTRIBUTION_ID
+
+cache:
+  paths:
+    - 'node_modules/**/*'

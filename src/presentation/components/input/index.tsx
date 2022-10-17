@@ -47,7 +47,7 @@ const InputComponent = (
   }, []);
 
   const handleFocus = useCallback(
-    (event: React.FocusEvent<HTMLInputElement>) => {
+    event => {
       if (disableAutofill) {
         disableInitialReadOnly();
       }
@@ -91,30 +91,30 @@ const InputComponent = (
   }, [error, renderErrorArray, renderSingleError]);
 
   const renderInput = () => (
-    <div>
-      <div className={classNames(styles.container, className)}>
-        <input
-          {...otherProps}
-          className={classNames(styles.input, { [styles.error]: renderError() })}
-          type={type}
-          value={mask ? undefined : value}
-          onChange={event => !mask && onChange?.(event.target.value)}
-          readOnly={isInitiallyReadOnly || readOnly}
-          onFocus={handleFocus}
-          placeholder={placeholder}
-          ref={ref}
-          id={id}
-          onPaste={disablePaste ? e => e.preventDefault() : undefined}
-        />
-        <label
-          className={classNames(styles.label, { [styles['has-text']]: value || placeholder })}
-          htmlFor={name}
-        >
-          {label}
-        </label>
-        {iconRight && <span className={styles['icon-right']}>{iconRight}</span>}
-      </div>
-      <div className={styles['error-container']}>{renderError()}</div>
+    <div className={classNames(styles.container, className)}>
+      <input
+        {...otherProps}
+        type={type}
+        value={mask ? undefined : value}
+        className={classNames(styles.input, {
+          [styles['input-error']]: error && error.length > 0,
+        })}
+        onChange={event => !mask && onChange?.(event.target.value)}
+        readOnly={isInitiallyReadOnly || readOnly}
+        onFocus={handleFocus}
+        placeholder={placeholder}
+        ref={ref}
+        id={id}
+        onPaste={disablePaste ? e => e.preventDefault() : undefined}
+      />
+      <label
+        htmlFor={id}
+        className={classNames(styles.label, { [styles['has-text']]: value || placeholder })}
+      >
+        {label}
+      </label>
+      {renderError()}
+      {iconRight && <span className={styles['icon-right']}>{iconRight}</span>}
     </div>
   );
 
@@ -126,11 +126,6 @@ const InputComponent = (
         onChange={event => onChange?.(event.target.value)}
         maskChar={null}
       >
-        {/* 
-        This code is being detected as an error by typescript because it's not a valid JSX element, it's just a reference to a function that returns
-        some JSX. But that's how the react-input-mask docs tells us to do that. To be able to commit I just removed temporary the yarn check-types call
-        at lint-staged in package.json
-        */}
         {renderInput}
       </InputMask>
     );
